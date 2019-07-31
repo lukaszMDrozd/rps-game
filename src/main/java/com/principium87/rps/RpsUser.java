@@ -24,7 +24,7 @@ public class RpsUser implements RpsChoices{
         this.userScore += score;
     }
 
-    private String userNameInput(){
+    private String userNameInput() throws InputMismatchException{
         Scanner sc = new Scanner(System.in);
         while(true){
             System.out.println("Witaj w grze - podaj swoje Imię:");
@@ -40,7 +40,7 @@ public class RpsUser implements RpsChoices{
         this.userScore = 0;
     }
 
-    public Integer doUserChoice() throws InputMismatchException, ClassCastException{
+    public Integer doUserChoice() throws InputMismatchException{
         Scanner sc = new Scanner(System.in);
         int userInput;
         while (true) {
@@ -63,7 +63,7 @@ public class RpsUser implements RpsChoices{
         }
     }
 
-    public String doUserFinalChoice(){
+    public String doUserFinalChoice() throws InputMismatchException{
         Scanner sc = new Scanner(System.in);
         String userInput;
         while(true){
@@ -85,7 +85,7 @@ public class RpsUser implements RpsChoices{
         }
     }
 
-    public boolean doUserFinalChoiceConfirmation(){
+    public boolean doUserFinalChoiceConfirmation() throws InputMismatchException{
         Scanner sc = new Scanner(System.in);
         String userInput;
         while(true){
