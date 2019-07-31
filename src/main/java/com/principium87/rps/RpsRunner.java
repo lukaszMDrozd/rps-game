@@ -5,17 +5,14 @@ public class RpsRunner {
     public static void main(String[] args) {
 
     RpsUser rpsUser = new RpsUser();
-
-    Integer numberOfWinRounds = RpsGame.numberOfWinRoundsInput();
-    RpsGame rpsGame = new RpsGame(numberOfWinRounds);
+    RpsGame rpsGame = new RpsGame();
     RpsComputer rpsComputer = new RpsComputer();
 
     rpsGame.showMenu();
 
     while(!rpsGame.isEnd()) {
-
             rpsGame.rpsRound(rpsComputer, rpsUser);
-            rpsGame.setEnd(rpsGame.roundStatus(rpsComputer, rpsUser));
+            rpsGame.setEnd(rpsGame.isRoundStatus(rpsComputer, rpsUser));
             if(rpsGame.isEnd()){
                 rpsGame.setEnd(rpsGame.isRpsRoundSummary(rpsComputer, rpsUser));
             }

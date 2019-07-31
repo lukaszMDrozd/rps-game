@@ -9,13 +9,17 @@ public class RpsGame implements RpsChoices{
     private Integer actualRound = 0;
     private boolean end = false;
 
-    public RpsGame(int numberOfWinRounds){
+    public RpsGame(){
         setMenu();
-        this.numberOfWinRounds = numberOfWinRounds;
+        this.numberOfWinRounds = numberOfWinRoundsInput();
     }
 
     public int getNumberOfWinRounds() {
         return numberOfWinRounds;
+    }
+
+    public void setNumberOfWinRounds(Integer numberOfWinRounds) {
+        this.numberOfWinRounds = numberOfWinRounds;
     }
 
     public void setEnd(boolean end) {
@@ -111,19 +115,19 @@ public class RpsGame implements RpsChoices{
         rpsComputer.resetComputerScore();
         rpsUser.resetUserScores();
         resetActualRound();
-        numberOfWinRoundsInput();
+        setNumberOfWinRounds(numberOfWinRoundsInput());
     }
 
-    public boolean roundStatus(RpsComputer rpsComputer, RpsUser rpsUser) {
+    public boolean isRoundStatus(RpsComputer rpsComputer, RpsUser rpsUser) {
         if (rpsUser.getUserScore() == getNumberOfWinRounds() || (rpsComputer.getComputerScore() == getNumberOfWinRounds())) {
             System.out.print("Gra zakończona, ");
             if (rpsUser.getUserScore() == getNumberOfWinRounds()) {
                 System.out.println("Gratulacje, wygrałeś");
-                System.out.println("Twój wynik: " + rpsUser.getUserScore());
+                System.out.println(rpsUser.getUserName() + " twój wynik to: " + rpsUser.getUserScore());
                 System.out.println("Wynik komputera: " + rpsComputer.getComputerScore());
             } else if (rpsComputer.getComputerScore() == getNumberOfWinRounds()) {
                 System.out.println("Wygrał komputer");
-                System.out.println("Twój wynik: " + rpsUser.getUserScore());
+                System.out.println(rpsUser.getUserName() + " twój wynik to: " + rpsUser.getUserScore());
                 System.out.println("Wynik komputera: " + rpsComputer.getComputerScore());
             } return true;
         } else {
