@@ -60,8 +60,8 @@ public class RpsGame implements RpsChoices{
         this.menu.add("klawisz 1 - zagranie \"kamień\"");
         this.menu.add("klawisz 2 - zagranie \"papier\"");
         this.menu.add("klawisz 3 - zagranie \"nożyce\"");
-        this.menu.add("klawisz x - zakończenie gry \"Czy na pewno zakończyć grę ?\"");
-        this.menu.add("klawisz n - uruchomienie gry od nowa \"Czy na pewno zakończyć aktualną grę ?\"");
+        this.menu.add("klawisz x - zakończenie gry");
+        this.menu.add("klawisz n - uruchomienie gry od nowa");
     }
 
     public void rpsRound(RpsComputer rpsComputer, RpsUser rpsUser){
@@ -98,8 +98,9 @@ public class RpsGame implements RpsChoices{
         String userFinalChoice = rpsUser.doUserFinalChoice();
         if(userFinalChoice.equals("n")){
             System.out.println("Czy na pewno chcesz zacząć jeszce raz ?");
+            boolean confirmation =  !rpsUser.doUserFinalChoiceConfirmation();
             doRpsGameReset(rpsComputer, rpsUser);
-            return !rpsUser.doUserFinalChoiceConfirmation();
+            return confirmation;
         } else {
             System.out.println("Czy na pewno chcesz zakończyć grę");
             return rpsUser.doUserFinalChoiceConfirmation();
@@ -110,6 +111,7 @@ public class RpsGame implements RpsChoices{
         rpsComputer.resetComputerScore();
         rpsUser.resetUserScores();
         resetActualRound();
+        numberOfWinRoundsInput();
     }
 
     public boolean roundStatus(RpsComputer rpsComputer, RpsUser rpsUser) {
