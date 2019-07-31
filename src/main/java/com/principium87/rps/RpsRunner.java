@@ -6,26 +6,18 @@ public class RpsRunner {
 
     RpsUser rpsUser = new RpsUser();
 
-    Integer numberOfRounds = RpsGame.numberOfRoundsInput();
-    RpsGame rpsGame = new RpsGame(numberOfRounds);
-
+    Integer numberOfWinRounds = RpsGame.numberOfWinRoundsInput();
+    RpsGame rpsGame = new RpsGame(numberOfWinRounds);
     RpsComputer rpsComputer = new RpsComputer();
 
     rpsGame.showMenu();
 
-    System.out.println(rpsGame.getNumberOfRounds());
-    System.out.println(rpsUser.getUserName());
-
-
     while(!rpsGame.isEnd()) {
 
-            rpsGame.rpsRound(rpsUser, rpsComputer);
-            System.out.println(rpsUser.getUserScore());
-            System.out.println(rpsComputer.getComputerScore());
-
-        if (rpsUser.getUserScore() == rpsGame.getNumberOfRounds() || (rpsComputer.getComputerScore() == rpsGame.getNumberOfRounds())) {
-            rpsGame.setEnd(true);
-            System.out.print("Gra zakończona, ");
+            rpsGame.rpsRound(rpsComputer, rpsUser);
+            rpsGame.setEnd(rpsGame.roundStatus(rpsComputer, rpsUser));
+            if(rpsGame.isEnd()){
+                rpsGame.setEnd(rpsGame.isRpsRoundSummary(rpsComputer, rpsUser));
             }
         }
     }
