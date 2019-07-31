@@ -5,11 +5,12 @@ import java.util.Map;
 
 public interface RpsChoices {
 
-    default void setRpsChoices(){
+    Map<Integer, String> rpsChoices = new HashMap<>();
 
-        final Map<String, Integer> rpsChoices = new HashMap<>();
-        rpsChoices.put("kamień", 1);
-        rpsChoices.put("papier", 2);
-        rpsChoices.put("nożyce", 3);
+    default Map<Integer, String> getRpsChoices(){
+        rpsChoices.put(1, "kamień");
+        rpsChoices.put(2, "papier");
+        rpsChoices.put(3, "nożyce");
+        return rpsChoices;
     }
 }

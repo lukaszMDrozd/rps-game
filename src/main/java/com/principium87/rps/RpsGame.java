@@ -7,7 +7,6 @@ public class RpsGame implements RpsChoices{
     private List<String> menu = new ArrayList<>();
     private Integer numberOfRounds;
     private Integer actualRound = 0;
-
     private boolean end = false;
 
     public RpsGame(int numberOfRounds){
@@ -57,9 +56,35 @@ public class RpsGame implements RpsChoices{
         this.menu.add("klawisz n - uruchomienie gry od nowa, poprzedzone pytaniem \"Czy na pewno zakończyć aktualną grę ?\"");
     }
 
-    public Integer rpsRound(){
+    public void rpsRound(RpsUser rpsUser, RpsComputer rpsComputer){
 
         System.out.println("Rozpoczynamy rundę: " + ++actualRound);
-        return actualRound;
+        System.out.println("Wykonaj ruch");
+        String userChoice = getRpsChoices().get(rpsUser.doUserChoice());
+        String computerChoice = getRpsChoices().get(doComputerChoice());
+
+        switch(userChoice + " " + computerChoice){
+            case "kamień kamień":
+            case "papier papier":
+            case "nożyce nożyce":
+                System.out.println("Runda zakończona remisem");
+                break;
+            case "papier kamień ":
+            case "kamień nożyce":
+            case "nożyce papier":
+                {
+                rpsUser.setUserScore(1);
+                break;
+            }
+            default :
+                {
+                rpsComputer.setComputerScore(1);
+                break;
+            }
+        }
+    }
+
+    private static Integer doComputerChoice(){
+        return new Random().nextInt(3) +1;
     }
 }
